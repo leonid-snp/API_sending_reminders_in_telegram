@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import generics
 
 from habit.models import Habit
@@ -17,6 +18,11 @@ class HabitCreateAPIView(generics.CreateAPIView):
 class HabitListAPIView(generics.ListAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Habit.objects.filter(Q(public_habit=True) | Q(author=user))
+        return queryset
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
