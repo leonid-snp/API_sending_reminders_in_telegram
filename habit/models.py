@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
 
@@ -39,7 +40,8 @@ class Habit(models.Model):
         **NULLABLE
     )
     periodicity = models.PositiveSmallIntegerField(
-        default=1,
+        default=7,
+        validators=[MinValueValidator(1), MaxValueValidator(7)],
         verbose_name='Периодичность',
         help_text='Укажите периодичность выполнения'
     )
