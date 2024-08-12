@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
+    'django_celery_beat',
 
     'users',
     'habit'
@@ -128,3 +129,34 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://read-and-write.example.com",
 ]
+
+TG_API_TOKEN = os.getenv('TG_API_TOKEN')
+TG_API_URL = 'https://api.telegram.org/bot'
+
+
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_CACHE_BACKEND = os.getenv('CELERY_CACHE_BACKEND')
+# CELERY_ACCEPT_CONTENT = ['pickle', 'json']
+# CELERY_TASK_SERIALIZER = 'pickle'
+# CELERY_RESULT_SERIALIZER = 'pickle'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = os.getenv('CELERY_TASK_TRACK_STARTED', False) == 'True'
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BEAT_SCHEDULE = {
+    'add_task': {
+        'task': 'habit.tasks.add_task',
+        'schedule': timedelta(seconds=10),
+    },
+}
+
+CACHE_ENABLED = True
+if CACHE_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": os.getenv('LOCATION'),
+        }
+    }
+
