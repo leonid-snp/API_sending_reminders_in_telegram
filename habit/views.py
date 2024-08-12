@@ -1,6 +1,7 @@
 from rest_framework import generics
 
 from habit.models import Habit
+from habit.permissions import IsAuthor
 from habit.serializers import HabitSerializer
 
 
@@ -21,13 +22,16 @@ class HabitListAPIView(generics.ListAPIView):
 class HabitUpdateAPIView(generics.UpdateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    permission_classes = (IsAuthor,)
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    permission_classes = (IsAuthor,)
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    permission_classes = (IsAuthor,)
