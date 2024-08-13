@@ -1,7 +1,9 @@
+from datetime import datetime
+
 import requests
+
 from config import settings
 from habit.models import Habit
-from users.models import User
 
 
 def send_telegram_message(chat_id: str, message: str) -> None:
@@ -13,30 +15,33 @@ def send_telegram_message(chat_id: str, message: str) -> None:
     :return: None
     """
     params = {
+        'chat_id': chat_id,
         'text': message,
-        'chat_id': chat_id
     }
-    requests.get(f'{settings.TG_API_URL}{settings.TG_API_TOKEN}/sendMessage', params=params)
+    requests.post(f'{settings.TG_API_URL}{settings.TG_API_TOKEN}/sendMessage', params=params)
 
 
-def get_chat_id_user(email: str) -> str:
+def collecting_message(habit: list) -> None:
     """
-    Получаем телеграм чат-id пользователя.
+    Собираем сообщение для телеграмма.
 
-    :param email: (str) почта пользователя
-    :return: (str) чат-id пользователя
+    :param habit: (list) привычки
+    :return: None
     """
-    user = User.objects.get(email=email)
-    return user.tg_chat_id
-
-# def get_message_habit():
-#     message = Habit.objects.filter()
-
-
-def check_periodicity(habit: object) -> None:
-    habit.get('periodicity')
+    total_data = datetime.now().strftime('%H:%M')
+    for item in habit:
+        message = f'Привет не забудь сегодня в {item.time.strftime('%H:%M')} {item.action}'
+        if item.time.strftime('%H:%M') == total_data:
+            send_telegram_message(item.author.tg_chat_id, message)
 
 
 def get_habit() -> None:
+    """
+    Получаем привычки у которых пользователь
+    имеет телеграмм chat_id.
+
+    :return: None
+    """
     habit = Habit.objects.all()
-    check_periodicity(habit)
+    habit_is_use_tg = [item for item in habit if item.author.tg_chat_id]
+    collecting_message(habit_is_use_tg)

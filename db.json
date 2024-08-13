@@ -1,0 +1,154 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "last_login": "2024-08-12T09:31:06.698Z",
+        "is_superuser": true,
+        "first_name": "admin",
+        "last_name": "admin",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-08-12T09:30:35.842Z",
+        "email": "admin@admin.com",
+        "password": "pbkdf2_sha256$870000$IpPgNPMp43FjxG4s15HvFh$c70i1UmuGea+a2uBsAJeYRGjaL7OfpcyvkbMNm6kTq4=",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-08-12T10:34:11.979Z",
+        "email": "user_1@test.com",
+        "password": "pbkdf2_sha256$870000$ILJqn8S9IPdcCgvZ8fdZ8R$W3p7IlNcyY0DLPMai4GIyi2InuNBmowwBMwjmNZWHfs=",
+        "tg_chat_id": "5157700044",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-08-12T10:47:06.369Z",
+        "email": "user_2@test.com",
+        "password": "pbkdf2_sha256$870000$bjcjT6Mbkpq8jEdNk4KPRw$y8lis3KxtV9q4oMR7RORaAvok+Wb0xpZm08yAUu5XKM=",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-08-12T13:22:59.566Z",
+        "email": "user_3@test.com",
+        "password": "pbkdf2_sha256$870000$w6FzOtPydJKiItHsimBIC4$9I+BngC3rOZ28Gn1gEQfFHmY3xQLMKxS2HlCP5Q6VPo=",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "habit.habit",
+    "pk": 2,
+    "fields": {
+        "author": 2,
+        "location": "Улица",
+        "time": "18:00:00",
+        "action": "Выйти на прогулку",
+        "nice_habit": false,
+        "associated_habit": null,
+        "periodicity": 1,
+        "prize": "Скушать десерт",
+        "lead_time": "00:02:00",
+        "public_habit": true
+    }
+},
+{
+    "model": "habit.habit",
+    "pk": 3,
+    "fields": {
+        "author": 2,
+        "location": "Работа",
+        "time": "07:00:00",
+        "action": "Придти на работу вовремя",
+        "nice_habit": false,
+        "associated_habit": null,
+        "periodicity": 1,
+        "prize": "Возьму себе кофе",
+        "lead_time": "00:02:00",
+        "public_habit": true
+    }
+},
+{
+    "model": "habit.habit",
+    "pk": 4,
+    "fields": {
+        "author": 4,
+        "location": "Дом",
+        "time": "19:00:00",
+        "action": "Принять душ",
+        "nice_habit": true,
+        "associated_habit": null,
+        "periodicity": 1,
+        "prize": null,
+        "lead_time": "00:02:00",
+        "public_habit": true
+    }
+},
+{
+    "model": "habit.habit",
+    "pk": 5,
+    "fields": {
+        "author": 4,
+        "location": "Дом",
+        "time": "13:00:00",
+        "action": "Попить воды",
+        "nice_habit": false,
+        "associated_habit": 4,
+        "periodicity": 1,
+        "prize": null,
+        "lead_time": "00:02:00",
+        "public_habit": true
+    }
+},
+{
+    "model": "habit.habit",
+    "pk": 6,
+    "fields": {
+        "author": 4,
+        "location": "Спортзал",
+        "time": "16:00:00",
+        "action": "Пойти на тренировку",
+        "nice_habit": false,
+        "associated_habit": 4,
+        "periodicity": 3,
+        "prize": null,
+        "lead_time": "00:02:00",
+        "public_habit": false
+    }
+}
+]

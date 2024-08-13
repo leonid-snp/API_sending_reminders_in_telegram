@@ -62,7 +62,8 @@ class NiceHabitValidation:
         self.obj = obj
 
     def __call__(self, obj: dict) -> None:
-        if obj.get('nice_habit') and obj.get('associated_habit') or obj.get('prize'):
-            raise ValidationError(
-                'У приятной привычки не может быть `связанной привычки` или `вознаграждения`'
-            )
+        if obj.get('nice_habit'):
+            if obj.get('associated_habit') or obj.get('prize'):
+                raise ValidationError(
+                    'У приятной привычки не может быть `связанной привычки` или `вознаграждения`'
+                )
