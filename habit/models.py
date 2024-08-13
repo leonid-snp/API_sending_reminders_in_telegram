@@ -7,6 +7,9 @@ from users.models import User
 
 
 class Habit(models.Model):
+    """
+    Класс модели привычки.
+    """
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

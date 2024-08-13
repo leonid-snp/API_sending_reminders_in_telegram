@@ -7,7 +7,15 @@ from users.models import User
 
 
 class HabitTestcase(APITestCase):
-    def setUp(self):
+    """
+    Класс тестирования привычек.
+    """
+    def setUp(self) -> None:
+        """
+        Создаем тестовые объекты в базе данных.
+
+        :return: None
+        """
         self.user = User.objects.create(email='user_1@text.com',
                                         password='12345')
         self.habit = Habit.objects.create(author=self.user,
@@ -21,7 +29,12 @@ class HabitTestcase(APITestCase):
                                           )
         self.client.force_authenticate(user=self.user)
 
-    def test_habit_retrieve(self):
+    def test_habit_retrieve(self) -> None:
+        """
+        Тестируем детальный просмотр привычки.
+
+        :return: None
+        """
         url = reverse('habit:detail', args=(self.habit.pk,))
         response = self.client.get(url)
         data = response.json()
@@ -32,7 +45,12 @@ class HabitTestcase(APITestCase):
             data.get('location'), self.habit.location
         )
 
-    def test_habit_create(self):
+    def test_habit_create(self) -> None:
+        """
+        Тестируем создание привычки.
+
+        :return: None
+        """
         url = reverse('habit:create')
         data = {
             'author': self.user.pk,
@@ -51,7 +69,12 @@ class HabitTestcase(APITestCase):
             Habit.objects.all().count(), 2
         )
 
-    def test_habit_update(self):
+    def test_habit_update(self) -> None:
+        """
+        Тестируем обновление привычки.
+
+        :return: None
+        """
         url = reverse('habit:update', args=(self.habit.pk,))
         data = {
             'time': '22:00:00'
@@ -65,7 +88,12 @@ class HabitTestcase(APITestCase):
             result.get('location'), self.habit.location
         )
 
-    def test_habit_list(self):
+    def test_habit_list(self) -> None:
+        """
+        Тестируем вывод списка привычек.
+
+        :return: None
+        """
         url = reverse('habit:list')
         response = self.client.get(url)
         data = response.json()
@@ -91,7 +119,12 @@ class HabitTestcase(APITestCase):
             data.get('results'), result
         )
 
-    def test_habit_destroy(self):
+    def test_habit_destroy(self) -> None:
+        """
+        Тестируем удаление привычки.
+
+        :return: None
+        """
         url = reverse('habit:delete', args=(self.habit.pk,))
         response = self.client.delete(url)
         self.assertEqual(
