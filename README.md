@@ -1,19 +1,10 @@
 # Приложение для рассылки напоминаний клиентам в телеграмме
 
 ### Клонируйте репозиторий себе командой
-- git clone git@github.com:leonid-snp/Habit_reminder.git
+- `git clone git@github.com:leonid-snp/Habit_reminder.git`
 
 ### Перейдите в проект командой
-- cd Habit_reminder/
-
-### Для работы с проектом необходимо установить все зависимости в файле [pyproject.toml](pyproject.toml) введите в терминал команду
-- poetry install
-
-### Перед запуском приложения примените все миграции командой
-- python3 manage.py migrate
-
-### Выполни команду в консоли для тестового заполнения баз-данных
-- python3 manage.py loaddata db.json
+- `cd Habit_reminder/`
 
 ### Для работы заполните файл [.env.exampl](.env.exampl) затем переименуйте его в [.env](.env)
 
@@ -25,17 +16,18 @@
 POSTGRES_DB= имя базы данных
 POSTGRES_USER= пользователь базы данных
 POSTGRES_PASSWORD= пароль от базы данных
-POSTGRES_HOST= хост
+POSTGRES_HOST=db хост указан в файле [docker-compose.yml](docker-compose.yml) на строке №2
 POSTGRES_PORT= порт
 
 ### tg_setting
-TG_API_TOKEN= токен телеграмма
+TG_API_TOKEN= токен телеграмма полученный при регистрации ТГ бота
 
 ### celery_setting
-CELERY_BROKER_URL= хост брокер для приложения celery
-CELERY_RESULT_BACKEND= хост бекенда
-CELERY_CACHE_BACKEND= хост кэша
-CELERY_TASK_TRACK_STARTED= True
+- в проекте используется redis по этому настройки такие
+CELERY_BROKER_URL=redis://redis:6379/0 - хост брокер для приложения celery
+CELERY_RESULT_BACKEND=redis://redis:6379/0 - хост бекенда
+CELERY_CACHE_BACKEND=redis://redis:6379/0 - хост кэша
+CELERY_TASK_TRACK_STARTED=True
 
 ### Есть функционал отправки напоминаний
 - создайте приложение телеграмм, наберите в поиске BotFather
@@ -47,22 +39,15 @@ CELERY_TASK_TRACK_STARTED= True
 - заполните полученный токен в переменную окружения
 - при регистрации укажите полученный chat_id в модель пользователя
 
-### Чтобы запустить приложение в консоли введите команду
-- python manage.py runserver
+### Для запуска docker контейнера введите команды
+- `docker compose build` или `sudo docker compose build`
+- затем 
+- `docker compose up` или `sudo docker compose up`
+- можно одной командой
+- `docker compose up -d --build` или `sudo docker compose up -d --build`
 
 ### Перейдите по ссылке в браузере для просмотра документации
-- http://127.0.0.1:8000/redoc/
+- http://0.0.0.0:8000/redoc/
 
-### Для запуска периодической задачи для рассылки сделайте следующе
-- раз комментируйте код в [settings.py](config%2Fsettings.py) на 29 строчке
-- введите команду в терминале
-- python3 manage.py migrate
-
-### Для запуска рассылки введите команду в терминале 
-- celery -A config worker --beat --scheduler django --loglevel=info
-
-### Для остановки рассылок введите команду в терминале
-- ctrl+c
-
-### Для выхода с сервера нажмите комбинацию клавиш в терминале
+### Для остановки docker контейнера введите сочетание клавиш
 - ctrl+c
