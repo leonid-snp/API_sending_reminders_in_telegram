@@ -37,9 +37,6 @@ CELERY_RESULT_BACKEND= хост бекенда
 CELERY_CACHE_BACKEND= хост кэша
 CELERY_TASK_TRACK_STARTED= True
 
-### # redis
-- LOCATION=хост брокера редис
-
 ### Есть функционал отправки напоминаний
 - создайте приложение телеграмм, наберите в поиске BotFather
 - далее следуйте инструкциям по созданию бота
