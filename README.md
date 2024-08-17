@@ -6,7 +6,7 @@
 ### Перейдите в проект командой
 - `cd Habit_reminder/`
 
-### Для работы заполните файл [.env.exampl](.env.exampl) затем переименуйте его в [.env](.env)
+### Для работы заполните файл [.env.example](.env.example) затем переименуйте его в [.env](.env)
 
 ### django_setting
 - SECRET_KEY= секретный ключ от приложения django
